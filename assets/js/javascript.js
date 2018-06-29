@@ -1,21 +1,23 @@
 $(document).ready(function () {
     console.clear(); // Esto limpia la consola
 
-    $('#uploader').submit(function (evt) {
-        evt.preventDefault();
-
+    $("#file").change(function(evt){
         // Create a reader
         var reader = new FileReader();
 
         // Get the image
-        var file = $(evt.target).find('input[type="file"]').get(0).files[0];
+        var file = $(evt.target).get(0).files[0];
 
         reader.readAsDataURL(file);
 
         reader.onload = function (e) {
             console.log('The image was load');
             $('#image').attr('src', e.target.result);
-        };
+        };  
+    });
+    $('#uploader').submit(function (evt) {
+        evt.preventDefault();
+
         var srcImg = $("#image").attr("src");
         console.log(srcImg)
         var nick = $("#exampleFormControlInput1").val();
